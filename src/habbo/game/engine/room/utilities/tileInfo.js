@@ -100,3 +100,11 @@ export function isDoor(matrix, x, y) {
 
 }
 
+export function getHideborder(matrix, x, y) {
+    const midRightTile = getTile(matrix, x + 1, y);
+    const midTile = getTile(matrix, x, y);
+    const botTile = getTile(matrix, x, y + 1);
+
+    return isTile(midRightTile) && isTile(botTile) && getTileDiff(midTile, midRightTile) === 0 && getTileDiff(midTile, botTile) === 0;
+
+}

@@ -10,6 +10,7 @@ export class Tile {
         this._container = props.container;
         this._positions = props.positions;
         this._door = props.door;
+        this._hideborder = props.hideborder;
         if(this._door) {
             this._tileThickness = 0
         }
@@ -54,8 +55,10 @@ export class Tile {
             .endFill();
 
         this._object.addChild(top);
-        this._object.addChild(left);
-        this._object.addChild(right);
+        if(!this._hideborder){
+            this._object.addChild(left);
+            this._object.addChild(right);
+        }
         this._object.zIndex = getZOrder(this._positions.x, this._positions.y, this._positions.z + 0.1);
         this._object.x = 32 * this._positions.x - 32 * this._positions.y;
         this._object.y = 16 * this._positions.x + 16 * this._positions.y - 32 * this._positions.z;

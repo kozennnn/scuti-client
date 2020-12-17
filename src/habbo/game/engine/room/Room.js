@@ -3,7 +3,7 @@ import {Tile} from "./objects/Tile";
 import {Wall} from "./objects/Wall";
 import {getMaxZ} from "./utilities/getMaxZ";
 import {heightmap} from "./utilities/heightmap";
-import {getStair, getTileInfo, isDoor, isTile} from "./utilities/tileInfo";
+import {getHideborder, getStair, getTileInfo, isDoor, isTile} from "./utilities/tileInfo";
 import {Stair} from "./objects/Stair";
 
 export class Room {
@@ -181,7 +181,7 @@ export class Room {
                                     y: y,
                                     z: heightmap[map[y][x]]
                                 },
-                                direction: 'right'
+                                direction: 'right',
                             }));
                         } else {
                             this.addTile(new Tile({
@@ -193,7 +193,8 @@ export class Room {
                                     y: y,
                                     z: heightmap[map[y][x]]
                                 },
-                                door: false
+                                door: false,
+                                hideborder: getHideborder(map, x, y)
                             }));
                         }
                     }
