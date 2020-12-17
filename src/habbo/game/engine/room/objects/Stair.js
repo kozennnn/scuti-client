@@ -92,7 +92,7 @@ export class Stair {
                 }
                 this._object.zIndex = getZOrder(this._positions.x, this._positions.y, this._positions.z + 0.1);
                 this._object.x = 32 * this._positions.x - 32 * this._positions.y + 32;
-                this._object.y = 16 * this._positions.x + 16 * this._positions.y - 32 * this._positions.z + 16;
+                this._object.y = 16 * this._positions.x + 16 * this._positions.y - 32 * this._positions.z + 24;
                 this._container.addChild(this._object);
                 break;
             case 'bottom':
