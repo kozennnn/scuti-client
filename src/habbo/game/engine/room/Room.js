@@ -29,8 +29,14 @@ export class Room {
         this._maxZ = getMaxZ(this._floor);
     }
 
-    loadTextures() {
+    hideWalls(value) {
+        this._hideWalls = value;
+        this.updateRoom();
+    }
 
+    hideFloor(value) {
+        this._hideFloor = value;
+        this.updateRoom();
     }
 
     addTile(tile) {
@@ -75,7 +81,7 @@ export class Room {
         this.resetWalls();
 
         const map = this._parsedFloor;
-        console.log(map);
+        console.log(this._hideWalls);
 
         for(let y = 0; y < map.length; y++) {
             for (let x = 0; x < map[y].length; x++) {
@@ -92,40 +98,7 @@ export class Room {
                             },
                             door: true
                         }));
-                        this.addWall(new Wall({
-                            container: this._container,
-                            material: this._wallTextureId,
-                            tileThickness: this._floorThickness,
-                            wallThickness: this._wallThickness,
-                            wallHeight: 1,
-                            positions: {
-                                x: x,
-                                y: y,
-                                z: heightmap[map[y][x]]
-                            },
-                            maxZ: this._maxZ,
-                            direction: 'left',
-                            door: true,
-                        }));
-                    } else {
-                        if (!isTile(getTileInfo(map, x, y).topLeftTile) && !isTile(getTileInfo(map, x, y).topTile) && !isTile(getTileInfo(map, x, y).midLeftTile)) {
-                            this.addWall(new Wall({
-                                container: this._container,
-                                material: this._wallTextureId,
-                                tileThickness: this._floorThickness,
-                                wallThickness: this._wallThickness,
-                                wallHeight: 1,
-                                positions: {
-                                    x: x,
-                                    y: y,
-                                    z: heightmap[map[y][x]]
-                                },
-                                maxZ: this._maxZ,
-                                direction: 'corner',
-                                door: false,
-                            }));
-                        }
-                        if (!isTile(getTileInfo(map, x, y).midLeftTile)) {
+                        if(!this._hideWalls) {
                             this.addWall(new Wall({
                                 container: this._container,
                                 material: this._wallTextureId,
@@ -139,25 +112,62 @@ export class Room {
                                 },
                                 maxZ: this._maxZ,
                                 direction: 'left',
-                                door: false,
+                                door: true,
                             }));
                         }
-                        if (!isTile(getTileInfo(map, x, y).topTile)) {
-                            this.addWall(new Wall({
-                                container: this._container,
-                                material: this._wallTextureId,
-                                tileThickness: this._floorThickness,
-                                wallThickness: this._wallThickness,
-                                wallHeight: 1,
-                                positions: {
-                                    x: x,
-                                    y: y,
-                                    z: heightmap[map[y][x]]
-                                },
-                                maxZ: this._maxZ,
-                                direction: 'right',
-                                door: false,
-                            }));
+                    } else {
+                        if(!this._hideWalls) {
+                            if (!isTile(getTileInfo(map, x, y).topLeftTile) && !isTile(getTileInfo(map, x, y).topTile) && !isTile(getTileInfo(map, x, y).midLeftTile)) {
+                                this.addWall(new Wall({
+                                    container: this._container,
+                                    material: this._wallTextureId,
+                                    tileThickness: this._floorThickness,
+                                    wallThickness: this._wallThickness,
+                                    wallHeight: 1,
+                                    positions: {
+                                        x: x,
+                                        y: y,
+                                        z: heightmap[map[y][x]]
+                                    },
+                                    maxZ: this._maxZ,
+                                    direction: 'corner',
+                                    door: false,
+                                }));
+                            }
+                            if (!isTile(getTileInfo(map, x, y).midLeftTile)) {
+                                this.addWall(new Wall({
+                                    container: this._container,
+                                    material: this._wallTextureId,
+                                    tileThickness: this._floorThickness,
+                                    wallThickness: this._wallThickness,
+                                    wallHeight: 1,
+                                    positions: {
+                                        x: x,
+                                        y: y,
+                                        z: heightmap[map[y][x]]
+                                    },
+                                    maxZ: this._maxZ,
+                                    direction: 'left',
+                                    door: false,
+                                }));
+                            }
+                            if (!isTile(getTileInfo(map, x, y).topTile)) {
+                                this.addWall(new Wall({
+                                    container: this._container,
+                                    material: this._wallTextureId,
+                                    tileThickness: this._floorThickness,
+                                    wallThickness: this._wallThickness,
+                                    wallHeight: 1,
+                                    positions: {
+                                        x: x,
+                                        y: y,
+                                        z: heightmap[map[y][x]]
+                                    },
+                                    maxZ: this._maxZ,
+                                    direction: 'right',
+                                    door: false,
+                                }));
+                            }
                         }
                         if (getStair(map, x, y).direction === 'bottom') {
                             this.addTile(new Stair({
