@@ -16,7 +16,7 @@ export class Client {
 
         this.room = new Room({
             container: this.engine.getMainContainer(),
-            floor: 'xxxxxxxxxx\nxxxxx11111\nxxxxx11111\nxxxxx11111\n1000000000\n1000000000\n1000000000\n1000000000',
+            floor: 'xxxxxxxxxxx\nxxxxxx11111\nxxxxxx11111\nxxxxxx11111\n11000000000\nx1000000000\nx1000000000\nx1000000000',
         });
         //this.room.updateTileThickness(16);
         this.room.updateRoom();

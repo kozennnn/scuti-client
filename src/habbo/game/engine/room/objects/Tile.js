@@ -9,6 +9,10 @@ export class Tile {
         this._tileThickness = props.tileThickness;
         this._container = props.container;
         this._positions = props.positions;
+        this._door = props.door;
+        if(this._door) {
+            this._tileThickness = 0
+        }
         this._points = [
             { x: 0, y: 0 },
             { x: 32, y: -16 },

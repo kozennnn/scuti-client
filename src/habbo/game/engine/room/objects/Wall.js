@@ -13,19 +13,33 @@ export class Wall {
         this._positions = props.positions;
         this._maxZ = props.maxZ;
         this._direction = props.direction;
+        this._door = props.door;
 
         switch(this._direction) {
             case 'left':
-                this.coords = {
-                    x: 0 - this._wallThickness,
-                    y: 0 - this._wallThickness / 2 + this._positions.z * 32 - this._maxZ * 32,
+                if(this._door) {
+                    this.coords = {
+                        x: 0 - this._wallThickness + 32,
+                        y: 0 - this._wallThickness / 2 + this._positions.z * 32 - this._maxZ * 32 - 70,
+                    }
+                    this._points = [
+                        { x: this.coords.x, y: this.coords.y - 37 },
+                        { x: this.coords.x + 32, y: this.coords.y - 37 - 16 },
+                        { x: this.coords.x + 32 + this._wallThickness, y: this.coords.y - 37 - 16 + this._wallThickness / 2 },
+                        { x: this.coords.x + 32 + this._wallThickness - 32, y: this.coords.y - 37 - 16 + this._wallThickness / 2 + 16 },
+                    ];
+                } else {
+                    this.coords = {
+                        x: 0 - this._wallThickness,
+                        y: 0 - this._wallThickness / 2 + this._positions.z * 32 - this._maxZ * 32,
+                    }
+                    this._points = [
+                        { x: this.coords.x, y: this.coords.y - 123 },
+                        { x: this.coords.x + 32, y: this.coords.y - 123 - 16 },
+                        { x: this.coords.x + 32 + this._wallThickness, y: this.coords.y - 123 - 16 + this._wallThickness / 2 },
+                        { x: this.coords.x + 32 + this._wallThickness - 32, y: this.coords.y - 123 - 16 + this._wallThickness / 2 + 16 },
+                    ];
                 }
-                this._points = [
-                    { x: this.coords.x, y: this.coords.y - 123 },
-                    { x: this.coords.x + 32, y: this.coords.y - 123 - 16 },
-                    { x: this.coords.x + 32 + this._wallThickness, y: this.coords.y - 123 - 16 + this._wallThickness / 2 },
-                    { x: this.coords.x + 32 + this._wallThickness - 32, y: this.coords.y - 123 - 16 + this._wallThickness / 2 + 16 },
-                ];
                 break;
             case 'right':
                 this.coords = {
@@ -93,9 +107,15 @@ export class Wall {
             right.tint = PIXI.utils.premultiplyTint("0x93B7AA", 0.8);
         }
         right.moveTo(this._points[3].x, this._points[3].y)
-            .lineTo(this._points[3].x, this._points[3].y + 123 + this._tileThickness + this._maxZ * 32 - this._positions.z * 32)
-            .lineTo(this._points[2].x, this._points[2].y + 123 + this._tileThickness + this._maxZ * 32 - this._positions.z * 32)
-            .lineTo(this._points[2].x, this._points[2].y)
+        if(this._door) {
+            right.lineTo(this._points[3].x, this._points[3].y + 37 + this._tileThickness + this._maxZ * 32 - this._positions.z * 32)
+                .lineTo(this._points[2].x, this._points[2].y + 37 + this._tileThickness + this._maxZ * 32 - this._positions.z * 32)
+        } else {
+            right.lineTo(this._points[3].x, this._points[3].y + 123 + this._tileThickness + this._maxZ * 32 - this._positions.z * 32)
+                .lineTo(this._points[2].x, this._points[2].y + 123 + this._tileThickness + this._maxZ * 32 - this._positions.z * 32)
+        }
+
+        right.lineTo(this._points[2].x, this._points[2].y)
             .lineTo(this._points[3].x, this._points[3].y)
             .endFill();
 

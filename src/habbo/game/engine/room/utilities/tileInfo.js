@@ -82,3 +82,21 @@ export function getStair(matrix, x, y) {
     return false;
 }
 
+export function isDoor(matrix, x, y) {
+    // Top
+    const topLeftTile = getTile(matrix, x - 1, y - 1);
+    const topTile = getTile(matrix, x, y - 1);
+    const topRightTile = getTile(matrix, x + 1, y - 1);
+    // Mid
+    const midLeftTile = getTile(matrix, x - 1, y);
+    const midTile = getTile(matrix, x, y);
+    const midRightTile = getTile(matrix, x + 1, y);
+    // Bot
+    const botLeftTile = getTile(matrix, x - 1, y + 1);
+    const botTile = getTile(matrix, x, y + 1);
+    const botRightTile = getTile(matrix, x + 1, y + 1);
+
+    return !isTile(topTile) && !isTile(topLeftTile) && !isTile(midLeftTile) && !isTile(botLeftTile) && !isTile(botTile) && isTile(midTile);
+
+}
+
