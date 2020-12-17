@@ -29,6 +29,10 @@ export class Room {
         this._maxZ = getMaxZ(this._floor);
     }
 
+    loadTextures() {
+
+    }
+
     addTile(tile) {
         this._tiles.push(tile)
     }
@@ -56,6 +60,16 @@ export class Room {
         this._walls = [];
     }
 
+    applyWallTexture(id) {
+        this._wallTextureId = id;
+        this.updateRoom();
+    }
+
+    applyFloorTexture(id) {
+        this._floorTextureId = id;
+        this.updateRoom();
+    }
+
     updateRoom() {
         this.resetTiles();
         this.resetWalls();
@@ -69,7 +83,7 @@ export class Room {
                     if(!isTile(getTileInfo(map, x, y).topLeftTile) && !isTile(getTileInfo(map, x, y).topTile) && !isTile(getTileInfo(map, x, y).midLeftTile)) {
                         this.addWall(new Wall({
                             container: this._container,
-                            material: 0,
+                            material: this._wallTextureId,
                             tileThickness: this._floorThickness,
                             wallThickness: this._wallThickness,
                             wallHeight: 1,
@@ -85,7 +99,7 @@ export class Room {
                     if(!isTile(getTileInfo(map, x, y).midLeftTile)) {
                         this.addWall(new Wall({
                             container: this._container,
-                            material: 0,
+                            material: this._wallTextureId,
                             tileThickness: this._floorThickness,
                             wallThickness: this._wallThickness,
                             wallHeight: 1,
@@ -101,7 +115,7 @@ export class Room {
                     if(!isTile(getTileInfo(map, x, y).topTile)) {
                         this.addWall(new Wall({
                             container: this._container,
-                            material: 0,
+                            material: this._wallTextureId,
                             tileThickness: this._floorThickness,
                             wallThickness: this._wallThickness,
                             wallHeight: 1,
@@ -117,7 +131,7 @@ export class Room {
                     if(getStair(map, x, y).direction === 'bottom') {
                         this.addTile(new Stair({
                             container: this._container,
-                            material: 0,
+                            material: this._floorTextureId,
                             tileThickness: this._floorThickness,
                             positions: {
                                 x: x,
@@ -129,7 +143,7 @@ export class Room {
                     } else if(getStair(map, x, y).direction === 'right') {
                         this.addTile(new Stair({
                             container: this._container,
-                            material: 0,
+                            material: this._floorTextureId,
                             tileThickness: this._floorThickness,
                             positions: {
                                 x: x,
@@ -141,7 +155,7 @@ export class Room {
                     } else {
                         this.addTile(new Tile({
                             container: this._container,
-                            material: 0,
+                            material: this._floorTextureId,
                             tileThickness: this._floorThickness,
                             positions: {
                                 x: x,

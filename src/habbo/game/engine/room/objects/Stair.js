@@ -38,6 +38,8 @@ export class Stair {
     draw() {
         this._object = new PIXI.Container();
 
+        const tileMaterial = PIXI.Texture.from('http://127.0.0.1:8081/room/spaces/44_HabboRoomContent_floor_texture_64_0_floor_basic.png');
+
         switch(this._direction) {
             case 'left':
                 this.coords = {
@@ -52,7 +54,7 @@ export class Stair {
                         y: this.coords.y - 12,
                     }
                     const top = new PIXI.Graphics()
-                        .beginFill("0xFFFFFF")
+                        .beginTextureFill({ texture: tileMaterial, color: PIXI.utils.premultiplyTint("0xE2E2E2", 0.9999), matrix: new PIXI.Matrix(1, 0.5, 1, -0.5, 0, 0)})
                         .moveTo(this._points[0].x, this._points[0].y)
                         .lineTo(this._points[1].x, this._points[1].y)
                         .lineTo(this._points[2].x, this._points[2].y)
@@ -61,7 +63,7 @@ export class Stair {
                         .endFill();
 
                     const left = new PIXI.Graphics()
-                        .beginFill("0xDDDDDD")
+                        .beginTextureFill({ texture: tileMaterial, color: PIXI.utils.premultiplyTint("0xE2E2E2", 0.8), matrix: new PIXI.Matrix(1, 0.5, 0, 1, 0, 0)})
                         .moveTo(this._points[0].x, this._points[0].y)
                         .lineTo(this._points[0].x, this._points[0].y + this._tileThickness)
                         .lineTo(this._points[3].x, this._points[3].y + this._tileThickness)
@@ -69,7 +71,7 @@ export class Stair {
                         .endFill();
 
                     const right = new PIXI.Graphics()
-                        .beginFill("0xC9C9C9")
+                        .beginTextureFill({ texture: tileMaterial, color: PIXI.utils.premultiplyTint("0xE2E2E2", 0.71), matrix: new PIXI.Matrix(1, -0.5, 0, 1, 8, 0)})
                         .moveTo(this._points[3].x, this._points[3].y)
                         .lineTo(this._points[3].x, this._points[3].y + this._tileThickness)
                         .lineTo(this._points[2].x, this._points[2].y + this._tileThickness)
@@ -100,7 +102,7 @@ export class Stair {
                         y: this.coords.y -12,
                     }
                     const top = new PIXI.Graphics()
-                        .beginFill("0xFFFFFF")
+                        .beginTextureFill({ texture: tileMaterial, color: PIXI.utils.premultiplyTint("0xE2E2E2", 0.9999), matrix: new PIXI.Matrix(1, 0.5, 1, -0.5, 0, 0)})
                         .moveTo(this._points[0].x, this._points[0].y)
                         .lineTo(this._points[1].x, this._points[1].y)
                         .lineTo(this._points[2].x, this._points[2].y)
@@ -109,7 +111,7 @@ export class Stair {
                         .endFill();
 
                     const left = new PIXI.Graphics()
-                        .beginFill("0xDDDDDD")
+                        .beginTextureFill({ texture: tileMaterial, color: PIXI.utils.premultiplyTint("0xE2E2E2", 0.8), matrix: new PIXI.Matrix(1, 0.5, 0, 1, 0, 0)})
                         .moveTo(this._points[0].x, this._points[0].y)
                         .lineTo(this._points[0].x, this._points[0].y + this._tileThickness)
                         .lineTo(this._points[3].x, this._points[3].y + this._tileThickness)
@@ -117,7 +119,7 @@ export class Stair {
                         .endFill();
 
                     const right = new PIXI.Graphics()
-                        .beginFill("0xC9C9C9")
+                        .beginTextureFill({ texture: tileMaterial, color: PIXI.utils.premultiplyTint("0xE2E2E2", 0.71), matrix: new PIXI.Matrix(1, -0.5, 0, 1, 0, 0)})
                         .moveTo(this._points[3].x, this._points[3].y)
                         .lineTo(this._points[3].x, this._points[3].y + this._tileThickness)
                         .lineTo(this._points[2].x, this._points[2].y + this._tileThickness)

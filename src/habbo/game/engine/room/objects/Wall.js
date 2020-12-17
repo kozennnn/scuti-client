@@ -59,6 +59,8 @@ export class Wall {
     draw() {
         this._object = new PIXI.Container();
 
+        const wallMaterial = PIXI.Texture.from('http://127.0.0.1:8081/room/spaces/13_HabboRoomContent_wall_texture_64_1_wall_vstripes1.png');
+
         const top = new PIXI.Graphics()
             .beginFill("0xFFFFFF")
             .moveTo(this._points[0].x, this._points[0].y)
@@ -68,17 +70,29 @@ export class Wall {
             .lineTo(this._points[0].x, this._points[0].y)
             .endFill();
 
-        const left = new PIXI.Graphics()
-            .beginFill("0x000000")
-            .moveTo(this._points[0].x, this._points[0].y)
+        top.tint = PIXI.utils.premultiplyTint("0x93B7AA", 0.61);
+
+        const left = new PIXI.Graphics();
+        if(this._direction === 'right') {
+            left.beginTextureFill({ texture: wallMaterial, color: PIXI.utils.premultiplyTint("0x93B7AA", 0.9999), matrix: new PIXI.Matrix(1, 0.5, 0, 1, this.coords.x, this.coords.y - (123 + this._maxZ * 32 - this._positions.z * 32))})
+        } else {
+            left.beginFill("0xFFFFFF")
+            left.tint = PIXI.utils.premultiplyTint("0x93B7AA", 0.9999);
+        }
+        left.moveTo(this._points[0].x, this._points[0].y)
             .lineTo(this._points[0].x, this._points[0].y + 123 + this._tileThickness + this._maxZ * 32 - this._positions.z * 32)
             .lineTo(this._points[3].x, this._points[3].y + 123 + this._tileThickness + this._maxZ * 32 - this._positions.z * 32)
             .lineTo(this._points[3].x, this._points[3].y)
             .endFill();
 
         const right = new PIXI.Graphics()
-            .beginFill("0xC9C9C9")
-            .moveTo(this._points[3].x, this._points[3].y)
+        if(this._direction === 'left') {
+            right.beginTextureFill({ texture: wallMaterial, color: PIXI.utils.premultiplyTint("0x93B7AA", 0.8), matrix: new PIXI.Matrix(1, -0.5, 0, 1, this.coords.x, this.coords.y - (123 + this._maxZ * 32 - this._positions.z * 32))})
+        } else {
+            right.beginFill("0xFFFFFF")
+            right.tint = PIXI.utils.premultiplyTint("0x93B7AA", 0.8);
+        }
+        right.moveTo(this._points[3].x, this._points[3].y)
             .lineTo(this._points[3].x, this._points[3].y + 123 + this._tileThickness + this._maxZ * 32 - this._positions.z * 32)
             .lineTo(this._points[2].x, this._points[2].y + 123 + this._tileThickness + this._maxZ * 32 - this._positions.z * 32)
             .lineTo(this._points[2].x, this._points[2].y)
