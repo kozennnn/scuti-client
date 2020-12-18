@@ -282,7 +282,7 @@ box-shadow: inset 0px 2px 0px 0px rgba(0,0,0,0.12);
     color: #969496;
     text-transform: uppercase;
 }
-.frame.s1 .hiddentab .header img {
+.frame.s1 .hiddentab .header images {
     vertical-align: middle;
 }
 .frame.s1 .hiddentab .but {
@@ -293,10 +293,10 @@ box-shadow: inset 0px 2px 0px 0px rgba(0,0,0,0.12);
     top: 4px;
 }
 .frame.s1 .hiddentab .but.show {
-    background-image: url(../img/plus.png);
+    background-image: url(../images/plus.png);
 }
 .frame.s1 .hiddentab .but.hide {
-    background-image: url(../img/sub.png);
+    background-image: url(../images/sub.png);
 }
 .frame.s1 .roomtab {
     height: 78px;
@@ -395,7 +395,7 @@ box-shadow: inset 0px 2px 0px 0px rgba(0,0,0,0.12);
 }
 .frame.s1 .default_3x3 .furniprev .preview {
     height: calc(100% - 48px);
-    background-image: url(../img/tile.png);
+    background-image: url(../images/tile.png);
     border-radius: 3px;
     float: left;
     width: 164px;
@@ -422,7 +422,7 @@ box-shadow: inset 0px 2px 0px 0px rgba(0,0,0,0.12);
 }
 .frame.s1 .club .banner {
     height: calc(100% - 120px);
-    background: url(../img/habboclub.png), linear-gradient(90deg, #AC0F0F 0%, #D24716 100%);
+    background: url(../images/habboclub.png), linear-gradient(90deg, #AC0F0F 0%, #D24716 100%);
     background-repeat: no-repeat;
     background-position: center center;
     border-radius: 3px;
@@ -595,41 +595,41 @@ button.green:hover {
 /* Icons */
 
 i.icon.chatstyles-icon {
-    background-image: url(../img/styles-icon.png);
+    background-image: url(../images/styles-icon.png);
     width: 17px;
     height: 19px;
 }
 
 i.icon.icon-habbo {
-    background-image: url(../img/habbo.png);
+    background-image: url(../images/habbo.png);
     width: 28px;
     height: 28px;
 }
 
 i.icon.icon-rooms {
-    background-image: url(../img/rooms.png);
+    background-image: url(../images/rooms.png);
     width: 44px;
     height: 30px;
 }
 
 i.icon.icon-catalog {
-    background-image: url(../img/catalog.png);
+    background-image: url(../images/catalog.png);
     width: 33px;
     height: 33px;
 }
 
 i.icon.icon-message {
-    background-image: url(../img/message.png);
+    background-image: url(../images/message.png);
     width: 26px;
     height: 32px;
 }
 i.icon.icon-friends {
-    background-image: url(../img/friends.png);
+    background-image: url(../images/friends.png);
     width: 32px;
     height: 33px;
 }
 i.icon.icon-inventory {
-    background-image: url(../img/inventory.png);
+    background-image: url(../images/inventory.png);
     width: 28px;
     height: 29px;
 }

@@ -1,17 +1,20 @@
 <template>
     <div class="scuti-main-component">
         <RoomView></RoomView>
+
     </div>
 </template>
 
 <script>
 
     import RoomView from "./components/room/RoomView";
+    import LoadingView from "./components/loading/LoadingView";
 
     export default {
         name: "App",
         components: {
             RoomView,
+            LoadingView,
         }
     }
 </script>

@@ -3,7 +3,16 @@ import {Tile} from "./objects/Tile";
 import {Wall} from "./objects/Wall";
 import {getMaxZ} from "./utilities/getMaxZ";
 import {heightmap} from "./utilities/heightmap";
-import {getHideborder, getStair, getTileInfo, isDoor, isTile} from "./utilities/tileInfo";
+import {
+    getHideborder,
+    getHideborderLeft,
+    getHideborderRight,
+    getStair,
+    getTileInfo,
+    isDoor,
+    isTile,
+    isTileY
+} from "./utilities/tileInfo";
 import {Stair} from "./objects/Stair";
 
 export class Room {
@@ -19,7 +28,7 @@ export class Room {
         this._hideWalls = false;
         this._hideFloor = false;
 
-        this._wallTextureId = 0;
+        this._wallTextureId = 114;
         this._floorTextureId = 0;
         this._landscapeTextureId = 0;
 
@@ -81,7 +90,6 @@ export class Room {
         this.resetWalls();
 
         const map = this._parsedFloor;
-        console.log(this._hideWalls);
 
         for(let y = 0; y < map.length; y++) {
             for (let x = 0; x < map[y].length; x++) {
@@ -132,6 +140,7 @@ export class Room {
                                     maxZ: this._maxZ,
                                     direction: 'corner',
                                     door: false,
+                                    hideborder: true,
                                 }));
                             }
                             if (!isTile(getTileInfo(map, x, y).midLeftTile)) {
@@ -149,9 +158,11 @@ export class Room {
                                     maxZ: this._maxZ,
                                     direction: 'left',
                                     door: false,
+                                    hideborder: getHideborderLeft(map, x, y)
                                 }));
                             }
                             if (!isTile(getTileInfo(map, x, y).topTile)) {
+
                                 this.addWall(new Wall({
                                     container: this._container,
                                     material: this._wallTextureId,
@@ -166,7 +177,9 @@ export class Room {
                                     maxZ: this._maxZ,
                                     direction: 'right',
                                     door: false,
+                                    hideborder: getHideborderRight(map, x, y)
                                 }));
+
                             }
                         }
                         if (getStair(map, x, y).direction === 'bottom') {

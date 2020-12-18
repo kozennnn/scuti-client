@@ -106,5 +106,18 @@ export function getHideborder(matrix, x, y) {
     const botTile = getTile(matrix, x, y + 1);
 
     return isTile(midRightTile) && isTile(botTile) && getTileDiff(midTile, midRightTile) === 0 && getTileDiff(midTile, botTile) === 0;
+}
 
+export function getHideborderLeft(matrix, x, y) {
+    const midTile = getTile(matrix, x, y);
+    const botTile = getTile(matrix, x, y + 1);
+    console.log(isTile(botTile) && isTile(midTile))
+    return isTile(botTile) && isTile(midTile);
+}
+
+export function getHideborderRight(matrix, x, y) {
+    const midTile = getTile(matrix, x, y);
+    const midRightTile = getTile(matrix, x + 1, y);
+    console.log(isTile(midRightTile) && isTile(midTile))
+    return isTile(midRightTile) && isTile(midTile);
 }

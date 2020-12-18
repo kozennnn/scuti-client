@@ -14,6 +14,12 @@
 
 <style scoped>
 
+    .scuti-room-view-component {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+    }
+
     canvas {
         position: absolute;
         top: 0;
